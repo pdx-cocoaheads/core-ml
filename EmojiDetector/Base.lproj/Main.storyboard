@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EmojiDetector" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kng-FG-MEA" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⁉️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHL-lu-0cU" userLabel="Result Label">
+                                <rect key="frame" x="0.0" y="540.5" width="375" height="78.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="64"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QHL-lu-0cU" secondAttribute="bottom" constant="48" id="95m-Lc-fy2"/>
+                            <constraint firstItem="Kng-FG-MEA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Git-Ad-I8r"/>
+                            <constraint firstItem="Kng-FG-MEA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NZX-0d-xvu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerX" secondItem="QHL-lu-0cU" secondAttribute="centerX" id="WgZ-4r-Ew4"/>
+                            <constraint firstItem="Kng-FG-MEA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qIa-vU-LzD"/>
+                            <constraint firstItem="Kng-FG-MEA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wkO-Bm-D75"/>
+                            <constraint firstItem="QHL-lu-0cU" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="xYq-aM-d9h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="Kng-FG-MEA" id="wmA-8G-yej"/>
+                        <outlet property="resultsLabel" destination="QHL-lu-0cU" id="V7C-wr-eXn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
