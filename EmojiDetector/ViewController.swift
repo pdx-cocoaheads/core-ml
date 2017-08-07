@@ -14,6 +14,7 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
+    @IBOutlet weak var resultsLabel: UILabel!
     @IBOutlet weak var cameraView: UIView!
     private var captureSession: AVCaptureSession!
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
@@ -71,6 +72,11 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
 
             // TODO: Analyze dat imageBuffer.
+            let result = "⁉️"
+            DispatchQueue.main.async {
+                // Update UI here.
+                self.resultsLabel.text = result
+            }
         }
     }
 }
