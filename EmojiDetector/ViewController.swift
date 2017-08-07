@@ -12,23 +12,50 @@
 
 import UIKit
 import AVFoundation
+import CoreML
+import Vision
 
 class ViewController: UIViewController {
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var resultsLabel: UILabel!
     @IBOutlet weak var cameraView: UIView!
+
     private var captureSession: AVCaptureSession!
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     private let processingQueue: DispatchQueue = DispatchQueue(label: "videoProcessingQueue")
+
+    private var request: VNCoreMLRequest!
+    private let yolo = YOLO()
+
+//    private let labels = [
+//        "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat",
+//        "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person",
+//        "pottedplant", "sheep", "sofa", "train", "tvmonitor"
+//    ]
+    private let labels = [
+        "✈️", "🚲", "🦅", "🚢", "🍻", "🚌", "🏎", "😸",
+        "⑁", "🐄", "🍽", "🐶", "🐴", "🛵", "😁",
+        "☘️", "🐑", "🛋", "🚂", "📺"
+    ]
 
     private var lastTimestamp = CMTime()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        formatter.numberStyle = .percent
+
         guard let captureDevice = AVCaptureDevice.default(for: .video) else {
             assertionFailure("Failed to get default capture device.")
             return
         }
+
+        guard let model = try? VNCoreMLModel(for: yolo.model.model) else {
+            assertionFailure("Failed to load YOLO Model.")
+            return
+        }
+        request = VNCoreMLRequest(model: model, completionHandler: visionRequestCompleted)
+        request.imageCropAndScaleOption = .scaleFill
 
         captureSession = AVCaptureSession()
 
@@ -58,6 +85,32 @@ class ViewController: UIViewController {
             print(error)
         }
     }
+
+    private let formatter = NumberFormatter()
+    private func visionRequestCompleted(request: VNRequest?, error: Error?) {
+        guard let observations = request?.results as? [VNCoreMLFeatureValueObservation],
+            let features = observations.first?.featureValue.multiArrayValue else { return }
+
+        let boundingBoxes = yolo.computeBoundingBoxes(features: features).sorted {
+            CGFloat($0.score) * $0.rect.width * $0.rect.height > CGFloat($1.score) * $1.rect.width * $1.rect.height
+        }
+        let result: YOLO.Prediction?
+        if let topScore = boundingBoxes.first(where: { $0.score > 0.33 }) {
+            result = topScore
+        } else {
+            result = nil
+        }
+        DispatchQueue.main.async {
+            // Update UI here.
+            if let result = result {
+                self.resultsLabel.text = "\(self.labels[result.classIndex])"
+                self.scoreLabel.text = self.formatter.string(for: result.score)
+            } else {
+                self.resultsLabel.text = "⁉️"
+                self.scoreLabel.text = nil
+            }
+        }
+    }
 }
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -67,15 +120,12 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // framerate.
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         let deltaTime = timestamp - lastTimestamp
-        if deltaTime >= CMTimeMake(1, Int32(15)) {
+        if deltaTime >= CMTimeMake(1, Int32(3)) {
             lastTimestamp = timestamp
-            let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
 
-            // TODO: Analyze dat imageBuffer.
-            let result = "⁉️"
-            DispatchQueue.main.async {
-                // Update UI here.
-                self.resultsLabel.text = result
+            if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+                let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
+                try? handler.perform([request])
             }
         }
     }

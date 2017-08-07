@@ -12,6 +12,8 @@
 		942E6CC01F2EC2EC006FA1A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 942E6CBE1F2EC2EC006FA1A3 /* Main.storyboard */; };
 		942E6CC21F2EC2EC006FA1A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 942E6CC11F2EC2EC006FA1A3 /* Assets.xcassets */; };
 		942E6CC51F2EC2EC006FA1A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 942E6CC31F2EC2EC006FA1A3 /* LaunchScreen.storyboard */; };
+		94D6FB531F37E900007CA697 /* TinyYOLO.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 94D6FB511F37E869007CA697 /* TinyYOLO.mlmodel */; };
+		94D6FB551F37F220007CA697 /* YOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D6FB541F37F220007CA697 /* YOLO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		942E6CC11F2EC2EC006FA1A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		942E6CC41F2EC2EC006FA1A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		942E6CC61F2EC2EC006FA1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94D6FB511F37E869007CA697 /* TinyYOLO.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TinyYOLO.mlmodel; sourceTree = "<group>"; };
+		94D6FB541F37F220007CA697 /* YOLO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +64,18 @@
 				942E6CC11F2EC2EC006FA1A3 /* Assets.xcassets */,
 				942E6CC31F2EC2EC006FA1A3 /* LaunchScreen.storyboard */,
 				942E6CC61F2EC2EC006FA1A3 /* Info.plist */,
+				94D6FB521F37E872007CA697 /* Models */,
 			);
 			path = EmojiDetector;
+			sourceTree = "<group>";
+		};
+		94D6FB521F37E872007CA697 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94D6FB541F37F220007CA697 /* YOLO.swift */,
+				94D6FB511F37E869007CA697 /* TinyYOLO.mlmodel */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D6FB551F37F220007CA697 /* YOLO.swift in Sources */,
+				94D6FB531F37E900007CA697 /* TinyYOLO.mlmodel in Sources */,
 				942E6CBD1F2EC2EC006FA1A3 /* ViewController.swift in Sources */,
 				942E6CBB1F2EC2EC006FA1A3 /* AppDelegate.swift in Sources */,
 			);
