@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,17 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Khc-bi-yGh">
-                                <rect key="frame" x="0.0" y="10" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="655"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="553" id="7Sc-LP-lgu"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⁉️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHL-lu-0cU" userLabel="Result Label">
-                                <rect key="frame" x="0.0" y="571" width="375" height="96"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHL-lu-0cU" userLabel="Result Label">
+                                <rect key="frame" x="0.0" y="596.5" width="375" height="78.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="64"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -40,15 +39,16 @@
                         <constraints>
                             <constraint firstItem="QHL-lu-0cU" firstAttribute="centerX" secondItem="Khc-bi-yGh" secondAttribute="centerX" id="0kB-i4-qhM"/>
                             <constraint firstItem="Khc-bi-yGh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Eg5-Ae-YIh"/>
-                            <constraint firstItem="QHL-lu-0cU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="20" symbolic="YES" id="PJy-vD-UhV"/>
+                            <constraint firstItem="QHL-lu-0cU" firstAttribute="bottomMargin" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PJy-vD-UhV"/>
                             <constraint firstItem="QHL-lu-0cU" firstAttribute="width" secondItem="Khc-bi-yGh" secondAttribute="width" id="aRZ-NK-gR2"/>
-                            <constraint firstItem="Khc-bi-yGh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-10" id="f3x-PW-QAY"/>
+                            <constraint firstItem="Khc-bi-yGh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="f3x-PW-QAY"/>
                             <constraint firstItem="Khc-bi-yGh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oHa-Y0-a6J"/>
-                            <constraint firstItem="QHL-lu-0cU" firstAttribute="top" secondItem="Khc-bi-yGh" secondAttribute="bottom" constant="8" symbolic="YES" id="wxG-bN-9Vi"/>
+                            <constraint firstItem="Khc-bi-yGh" firstAttribute="bottom" secondItem="QHL-lu-0cU" secondAttribute="bottom" id="tqd-HB-mxt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="labelBottomConstraint" destination="PJy-vD-UhV" id="cQL-NZ-j4w"/>
                         <outlet property="resultsLabel" destination="QHL-lu-0cU" id="V7C-wr-eXn"/>
                         <outlet property="textView" destination="Khc-bi-yGh" id="5Oz-XL-1ux"/>
                     </connections>
